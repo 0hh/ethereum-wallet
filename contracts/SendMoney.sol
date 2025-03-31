@@ -2,23 +2,24 @@
 
 pragma solidity 0.8.15;
 
-contract SendMoney {
+contract SendWithdrawMoney {
 
-    uint256 number;
+    uint public ballanceReceived;
 
-    /**
-     * @dev Store value in variable
-     * @param num value to store
-     */
-    function store(uint256 num) public {
-        number = num;
+    function deposit() public payable {
+        ballanceReceived += msg.value;
     }
 
-    /**
-     * @dev Return value 
-     * @return value of 'number'
-     */
-    function retrieve() public view returns (uint256){
-        return number;
+    function getContractBalance() public view returns (uint) {
+        return address(this).balance;
     }
+
+    function withdrawAll() public {
+        address payable to = payable(msg.sender);
+        to.transfer(getContractBalance());
+    }
+    
+    function withdrawToAddress(address payable to) public {
+        to.transfer(getContractBalance());
+    } 
 }
