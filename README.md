@@ -1,2 +1,2 @@
-# ethereum-wallet
-Wallet - Send and Receive Money
+# Wallet
+### Wallet - Send and Receive so much Money
